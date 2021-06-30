@@ -1,0 +1,8 @@
+# AppRole files
+token
+*role_id
+*secret_id
+
+# vault-agent rendered files
+index.html
+kv.html

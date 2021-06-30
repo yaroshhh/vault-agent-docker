@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  web:
+    container_name: nginx-demo
+    image: "nginx:1.19.9-alpine"
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx:/usr/share/nginx/html
+    environment:
+      CONFIG_FILE: '/config/config.json'
+
+  vault-agent-demo:
+    image: hashicorp/vault-enterprise:latest
+    restart: always
+    volumes:
+      - ./vault-agent:/vault-agent:rw
+      - ./nginx:/usr/share/nginx/html:rw
+    environment:
+      VAULT_ADDR: "http://vault_dev:8200"
+    container_name: vault-agent-demo
+    entrypoint: "vault agent -log-level debug -config=/vault-agent/nginx-vault-agent.hcl"
+  
+  db:
+    image: "hashicorpdemoapp/product-api-db:v4280cf7"
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_DB: 'products'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'password'
+
+  vault_dev:
+    image: hashicorp/vault:latest
+    restart: always
+    volumes:
+      - /vault/data
+      - /etc/vault/logs
+    ports:
+      - "8200:8200/tcp"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: 'root'
+      VAULT_DEV_LISTEN_ADDRESS: '0.0.0.0:8200'
+    cap_add:
+      - IPC_LOCK
+    container_name: vault_dev
+    entrypoint: "vault server -dev"
