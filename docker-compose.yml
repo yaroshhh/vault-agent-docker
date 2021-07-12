@@ -14,6 +14,8 @@ services:
   vault-agent-demo:
     image: hashicorp/vault-enterprise:latest
     restart: always
+    ports:
+      - "18200:8200"
     volumes:
       - ./vault-agent:/vault-agent:rw
       - ./nginx:/usr/share/nginx/html:rw
@@ -30,6 +32,24 @@ services:
       POSTGRES_DB: 'products'
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'password'
+
+  db2:
+    image: "hashicorpdemoapp/product-api-db:v4280cf7"
+    ports:
+      - "25432:5432"
+    environment:
+      POSTGRES_DB: 'products'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'password2'
+
+  db3:
+    image: "hashicorpdemoapp/product-api-db:v4280cf7"
+    ports:
+      - "35432:5432"
+    environment:
+      POSTGRES_DB: 'products'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'password3'
 
   vault_dev:
     image: hashicorp/vault:latest
