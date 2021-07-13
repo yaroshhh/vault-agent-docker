@@ -1,9 +1,5 @@
 pid_file = "./pidfile"
 
-vault {
-  address = "http://vault_dev:8200"
-}
-
 auto_auth {
   method {
     type = "approle"
@@ -33,7 +29,15 @@ template {
   destination = "/usr/share/nginx/html/kv.html"
 }
 
+cache {
+  use_auto_auth_token = true
+}
+
 listener "tcp" {
-    address = "127.0.0.1:8200"
+    address = "0.0.0.0:8200"
     tls_disable = true
+}
+
+vault {
+  address = "http://vault_dev:8200"
 }

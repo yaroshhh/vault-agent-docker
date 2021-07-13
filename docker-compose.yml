@@ -21,6 +21,7 @@ services:
       - ./nginx:/usr/share/nginx/html:rw
     environment:
       VAULT_ADDR: "http://vault_dev:8200"
+      
     container_name: vault-agent-demo
     entrypoint: "vault agent -log-level debug -config=/vault-agent/nginx-vault-agent.hcl"
   

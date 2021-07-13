@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Setup VAULT_ADDR and VAULT_TOKEN
+export VAULT_ADDR=http://localhost:8200
+export VAULT_TOKEN=root
+
 # Enable AppRole and create a role:
 vault auth enable approle
 vault write auth/approle/role/nginx token_policies="nginx"
