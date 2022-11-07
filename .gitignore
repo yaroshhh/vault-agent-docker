@@ -6,3 +6,4 @@ token
 # vault-agent rendered files
 index.html
 kv.html
+02-dbtest.sh

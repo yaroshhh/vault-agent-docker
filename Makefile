@@ -43,4 +43,4 @@ clean:
 	rm -f vault-agent/token
 	rm -f nginx/index.html
 	rm -f nginx/kv.html
-	
+	rm -f ./scripts/02-dbtest.sh
