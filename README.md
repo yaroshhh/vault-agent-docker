@@ -18,7 +18,6 @@ This repo contains the source code for using Vault Agent with Docker Compose, as
     cd vault-agent-docker
     sh ./scripts/build.sh
     ```
-
 - Access [http://localhost:8080](http://localhost:8080) on your browser, and you should be able to see the nginx application display a dynamic Postgres database credential provided by Vault as shown below. Also try accessing [http://localhost:8080/kv.html](http://localhost:8080/kv.html) to see example static secret values.
 
 - You can access Vault Agent UI through [http://localhost:8200/](http://localhost:8200/)
