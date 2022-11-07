@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script will clean up locally provisioned resources
-[[ ! -f "./scripts" ]] && cd ../
+[ ! -d "./scripts" ] && cd ../
 
 docker compose down
 rm -f ./vault-agent/*role_id

@@ -27,6 +27,9 @@ init:
 approle:
 	cd scripts && ./01-approle.sh
 
+all-in-one scripts bundle:
+	sh ./scripts/build.sh
+
 cache:
 	echo "Testing cache"
 	export VAULT_ADDR=http://localhost:18200 \
@@ -40,3 +43,4 @@ clean:
 	rm -f vault-agent/token
 	rm -f nginx/index.html
 	rm -f nginx/kv.html
+	

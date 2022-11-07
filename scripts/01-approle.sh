@@ -9,7 +9,7 @@ vault auth enable approle
 vault write auth/approle/role/nginx token_policies="nginx"
 
 # Determine vault-agent path
-if [[ -f "./vault-agent" ]]; then
+if [ -d "./vault-agent" ]; then
   vault_agent_dir=./vault-agent
 else
   vault_agent_dir=../vault-agent

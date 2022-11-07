@@ -19,6 +19,7 @@ services:
     volumes:
       - ./vault-agent:/vault-agent:rw
       - ./nginx:/usr/share/nginx/html:rw
+      - ./scripts:/home/scripts:rw
     environment:
       VAULT_ADDR: "http://vault_dev:8200"
       
