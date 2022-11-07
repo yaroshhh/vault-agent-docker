@@ -29,6 +29,11 @@ template {
   destination = "/usr/share/nginx/html/kv.html"
 }
 
+template {
+  source = "/vault-agent/db_test.tpl"
+  destination = "/home/scripts/02-dbtest.sh"
+}
+
 cache {
   use_auto_auth_token = true
 }
