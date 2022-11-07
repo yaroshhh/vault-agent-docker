@@ -7,8 +7,7 @@
     <li><strong>app</strong> &#58; {{ .Data.data.app }}</li>
     <li><strong>username</strong> &#58; {{ .Data.data.username }}</li>
     <li><strong>password</strong> &#58; {{ .Data.data.password }}</li></ul>
-<hr><p class="mb-0">Helpful Vault commands</p>
-<pre><code>
-vault policy read nginx
-</code></pre></div> </body></html>
+<hr>
+<p class="mb-0"><a href="index.html">go back</a></p>
+</div> </body></html>
 {{- end }}

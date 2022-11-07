@@ -5,10 +5,12 @@ export VAULT_ADDR=http://localhost:8200
 export VAULT_TOKEN=root
 
 # Determine policy path
-if [[ -f "./nginx.hcl" ]]; then
+if [ -f "./nginx.hcl" ]; then
   policy_file=./nginx.hcl
+  nginx_sql=./nginx.sql
 else
   policy_file=../nginx.hcl
+  nginx_sql=../nginx.sql
 fi
 
 # Write a Policy
@@ -30,7 +32,6 @@ vault write postgres/config/products \
 # Create a Role for nginx
 vault write postgres/roles/nginx \
   db_name=products \
-  creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; \
-  GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\"" \
+  creation_statements=@${nginx_sql} \
   default_ttl="30s" \
   max_ttl="24h"
